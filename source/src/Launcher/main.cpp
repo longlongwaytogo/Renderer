@@ -5,6 +5,10 @@
 void main()
 {
 	std::cout << "this is main" << std::endl;
-	RenderWindowPtr window = GetRS().GetWindow();
+	GetSystem().Init();
+	GetSystem().Run();
+	GetSystem().Terminate();
+
+	/*RenderWindowPtr window = GetRS().GetWindow();*/
 	 
 }

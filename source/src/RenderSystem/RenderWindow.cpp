@@ -10,11 +10,23 @@ namespace RenderSystem
 		if (m_mode == WINDOW_GLFW)
 			m_windowImpl = std::shared_ptr<WindowBase>(new GLFWRenderWindow);
 		else
-			m_windowImpl = std::shared_ptr<WindowBase>(new Win32RenderWindow);
-		return true;
+			;// m_windowImpl = std::shared_ptr<WindowBase>(new Win32RenderWindow);
+		m_windowImpl->SetWindowName("Render");
+		m_windowImpl->SetWindowSize(1024, 768);
+		return m_windowImpl->Init();
 	}
 
-	RenderWindow::RenderWindow():m_mode(WINDOW_GLFW)
+	void RenderWindow::GetWindowSize(int& w, int& h)
+	{
+		m_windowImpl->GetWindowSize(w, h);
+	}
+
+	void RenderWindow::UpdateEvent(float deltaTime)
+	{
+		m_windowImpl->OnProcessInput(deltaTime);
+	}
+
+	RenderWindow::RenderWindow() :m_mode(WINDOW_GLFW)
 	{
 		
 	}
@@ -22,6 +34,11 @@ namespace RenderSystem
 	RenderWindow::~RenderWindow()
 	{
 
+	}
+
+	void* RenderWindow::GetNativeWindowHandle()
+	{
+		return m_windowImpl->GetNativeWindowHandle();
 	}
 
 }

@@ -7,7 +7,8 @@
 #include <vector>
 using namespace std;
 // GL Includes
-#include <glad/glad.h> // Contains all the necessery OpenGL includes
+#include <comm/glad/glad.h> // Contains all the necessery OpenGL includes
+#include <comm/shader_m.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 

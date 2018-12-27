@@ -15,11 +15,28 @@ namespace RenderSystem {
 		WindowBase():m_width(800), m_height(600){}
 		virtual ~WindowBase(){}
 
-		virtual void  SetWindowSize(int w, int h) {
+		 void  SetWindowSize(int w, int h) 
+		 {
 			m_width = w; m_height = h;
+		 }
+
+		 void GetWindowSize(int& w, int& h)
+		{
+			 w = m_width; h = m_height;
 		}
+
 		void SetWindowName(const std::string& name) { m_name = name; }
+
 		std::string GetWindowName() { return m_name; }
+		virtual bool Init() = 0;
+
+		virtual void* GetNativeWindowHandle() { return nullptr; }
+
+		virtual bool InitWindow() = 0;
+		virtual void OnSize(int width, int height) = 0;
+		virtual void OnMouse(double xpos, double ypos) = 0;
+		virtual void OnScroll(double xoffset, double yoffset) = 0;
+		virtual void OnProcessInput(float deltaTime) = 0;
 
 		/*
 		InitWindow 用于设置好几本参数后，创建窗口系统

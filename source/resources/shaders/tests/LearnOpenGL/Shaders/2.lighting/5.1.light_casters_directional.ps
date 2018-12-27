@@ -1,0 +1,52 @@
+#version 330 core
+out vec4 FragColor;
+
+in vec3 vFragPos;
+in vec3 vNormal;
+in vec2 vTexCoords;
+
+uniform vec3 objectColor;
+uniform vec3 lightColor;
+uniform vec3 viewPos;
+
+// uniform  块数据
+struct Material {
+	sampler2D diffuse; // 漫反射贴图 
+	//vec3	specular; // 镜面光照对物体的颜色影响
+	sampler2D specular;
+	float	shininess; // 镜面高光
+};
+
+struct Light {
+   // vec3 position; 
+    vec3 direction;// 平行光方向
+    vec3 ambient;  // 光照对环境光的强度
+    vec3 diffuse; // 光照对漫反射光的强度
+    vec3 specular; // 光照对镜面光的强度
+};
+uniform Light light;
+
+uniform Material material;
+
+void main()
+{
+	vec3 diffuseMapColor = vec3(texture(material.diffuse,vTexCoords));
+	vec3 ambient = light.ambient * diffuseMapColor;
+
+	// diffuse
+	vec3 norm = normalize(vNormal);
+	vec3 lightDir = normalize(-light.direction);
+	float diff = max(dot(norm,lightDir),0.0f); // 反射强度
+	vec3 diffuse = light.diffuse * diff * diffuseMapColor;
+
+	// specular
+	vec3 viewDir = normalize(viewPos - vFragPos);
+	vec3 reflectDir = reflect(-lightDir,norm); // lightDir 取负，表示入射光线
+
+	float spec = pow(max(dot(viewDir,reflectDir),0.0), material.shininess);
+	//vec3 specular = spec * material.specular * light.specular; // 高光，计算时使用光的颜色
+	vec3 specular = spec * vec3(texture(material.specular,vTexCoords)) * light.specular;
+	vec3 result =  (ambient + diffuse + specular);
+
+	FragColor = vec4(result,1.0f);
+}

@@ -19,8 +19,14 @@ namespace RenderSystem
 			WINDOW_WIN32,
 		};
 		bool CreateRenderWindow(int mode);
+		void GetWindowSize(int& w, int& h);
+
+		void UpdateEvent(float deltaTime);
+
 		RenderWindow();
 		~RenderWindow();
+
+		void* GetNativeWindowHandle();
 
 	private:
 		std::shared_ptr<WindowBase> m_windowImpl;

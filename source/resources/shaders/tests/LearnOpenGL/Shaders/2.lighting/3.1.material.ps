@@ -1,0 +1,55 @@
+#version 330 core
+out vec4 FragColor;
+
+in vec3 vFragPos;
+in vec3 vNormal;
+in vec2 TexCoords;
+
+uniform vec3 objectColor;
+uniform vec3 lightColor;
+uniform vec3 viewPos;
+
+// uniform  块数据
+struct Material {
+	vec3 ambient;
+	vec3 diffuse; // 漫反射 
+	vec3	specular; // 镜面光照对物体的颜色影响
+	float	shininess; // 镜面高光
+};
+
+struct Light {
+    vec3 position; 
+    vec3 ambient;  // 光照对环境光的强度
+    vec3 diffuse; // 光照对漫反射光的强度
+    vec3 specular; // 光照对镜面光的强度
+};
+uniform Light light;
+
+uniform Material material;
+
+void main()
+{
+	// ambient
+	vec3 ambient = light.ambient * material.ambient;
+
+	// diffuse
+	vec3 norm = normalize(vNormal);
+	vec3 lightDir = normalize(light.position - vFragPos);
+
+	float diff = max(dot(norm,lightDir),0.0f); // 反射强度
+	vec3 diffuse = light.diffuse * diff * material.diffuse;
+
+	// specular
+	vec3 viewDir = normalize(viewPos - vFragPos);
+	// 需要注意的是我们对lightDir向量进行了取反。reflect函数要求第一个向量是从光源指向片段位置的向量，但是lightDir当前正好相反，
+	// 是从片段指向光源（由先前我们计算lightDir向量时，减法的顺序决定）。为了保证我们得到正确的reflect向量，
+	// 我们通过对lightDir向量取反来获得相反的方向。第二个参数要求是一个法向量，所以我们提供的是已标准化的norm向量。
+
+	vec3 reflectDir = reflect(-lightDir,norm); // lightDir 取负，表示入射光线
+
+	float spec = pow(max(dot(viewDir,reflectDir),0.0), material.shininess);
+	vec3 specular = spec * material.specular * light.specular; // 高光，计算时使用光的颜色
+	vec3 result =  (ambient + diffuse + specular);
+
+	FragColor = vec4(result,1.0f);
+}

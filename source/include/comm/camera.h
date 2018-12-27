@@ -3,7 +3,7 @@
 
 #ifdef USE_GLEW
 #else
-#include <glad/glad.h>
+#include <comm/glad/glad.h>
 
 #endif
 #include <glm/glm.hpp>
@@ -63,6 +63,21 @@ public:
         this->Pitch = pitch;
         this->updateCameraVectors();
     }
+
+	void SetPose(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), 
+		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
+		GLfloat yaw = YAW, GLfloat pitch = PITCH)
+	{
+		this->Position = position;
+		this->WorldUp = up;
+		this->Yaw = yaw;
+		this->Pitch = pitch;
+		this->updateCameraVectors();
+		Front = glm::vec3(0.0f, 0.0f, -1.0f);
+		MovementSpeed = SPEED;
+		MouseSensitivity = SENSITIVTY;
+		Zoom = ZOOM;
+	}
 
     // Returns the view matrix calculated using Eular Angles and the LookAt Matrix
     glm::mat4 GetViewMatrix()
