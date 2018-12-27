@@ -32,19 +32,24 @@ SET(SHADER_SRC ${SHADER_DIR}/2.lighting/4.3.lighting_maps_exercise4.vs ${SHADER_
 ADD_EXECUTABLE(4.3.lighting_maps_exercise4 LearnOpenGL/2.lighting/4.3.lighting_maps_exercise4.cpp ${SHADER_SRC} )
 SET_TARGET_PROPERTIES(4.1.lighting_map_diffusemap PROPERTIES FOLDER tests/2.lighting)
 
-# 2.5.1 
+# 2.5.1 direction
 SET(SHADER_SRC ${SHADER_DIR}/2.lighting/5.1.light_casters_directional.vs ${SHADER_DIR}/2.lighting/5.1.light_casters_directional.ps)
 ADD_EXECUTABLE(5.1.light_casters_directional LearnOpenGL/2.lighting/5.1.light_casters_directional.cpp ${SHADER_SRC} )
 SET_TARGET_PROPERTIES(5.1.light_casters_directional PROPERTIES FOLDER tests/2.lighting)
  
-
-# 2.5.1 
+# 2.5.2 point
 SET(SHADER_SRC ${SHADER_DIR}/2.lighting/5.2.light_casters_point.vs ${SHADER_DIR}/2.lighting/5.2.light_casters_point.ps)
 ADD_EXECUTABLE(5.2.light_casters_point LearnOpenGL/2.lighting/5.2.light_casters_point.cpp ${SHADER_SRC} )
 SET_TARGET_PROPERTIES(5.2.light_casters_point PROPERTIES FOLDER tests/2.lighting)
+
+# 2.5.3  spot
+SET(SHADER_SRC ${SHADER_DIR}/2.lighting/5.3.light_casters_spot.vs ${SHADER_DIR}/2.lighting/5.3.light_casters_spot.ps)
+ADD_EXECUTABLE(5.3.light_casters_spot LearnOpenGL/2.lighting/5.3.light_casters_spot.cpp ${SHADER_SRC} )
+SET_TARGET_PROPERTIES(5.3.light_casters_spot PROPERTIES FOLDER tests/2.lighting)
+
 #5 advanced lighting
-add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)
-SET_TARGET_PROPERTIES(1.advanced_lighting PROPERTIES FOLDER tests/5.advanced_lighting)
+#add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)
+#SET_TARGET_PROPERTIES(1.advanced_lighting PROPERTIES FOLDER tests/5.advanced_lighting)
 
 # test 
 ADD_EXECUTABLE(testOpenGL LearnOpenGL/TestOpenGL.cpp)
