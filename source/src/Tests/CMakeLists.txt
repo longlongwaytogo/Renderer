@@ -46,6 +46,10 @@ SET_TARGET_PROPERTIES(5.2.light_casters_point PROPERTIES FOLDER tests/2.lighting
 SET(SHADER_SRC ${SHADER_DIR}/2.lighting/5.3.light_casters_spot.vs ${SHADER_DIR}/2.lighting/5.3.light_casters_spot.ps)
 ADD_EXECUTABLE(5.3.light_casters_spot LearnOpenGL/2.lighting/5.3.light_casters_spot.cpp ${SHADER_SRC} )
 SET_TARGET_PROPERTIES(5.3.light_casters_spot PROPERTIES FOLDER tests/2.lighting)
+# 2.5.4   soft spot
+SET(SHADER_SRC ${SHADER_DIR}/2.lighting/5.4.light_casters_spot_soft.vs ${SHADER_DIR}/2.lighting/5.4.light_casters_spot_soft.ps)
+ADD_EXECUTABLE(5.4.light_casters_spot_soft LearnOpenGL/2.lighting/5.4.light_casters_spot_soft.cpp ${SHADER_SRC} )
+SET_TARGET_PROPERTIES(5.4.light_casters_spot_soft PROPERTIES FOLDER tests/2.lighting)
 
 #5 advanced lighting
 #add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)
