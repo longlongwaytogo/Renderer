@@ -157,6 +157,7 @@ SET_TARGET_PROPERTIES(6.multiple_lights PROPERTIES FOLDER tests/2.lighting)
 # 4.1 advanced_openg  depth test
 CreateTest(1.1.depth_testing 4.advanced_opengl)
 CreateTest(1.2.depth_testing 4.advanced_opengl)
+CreateTest(2.stencil_testing 4.advanced_opengl)
 #5 advanced lighting
 #add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)
 #SET_TARGET_PROPERTIES(1.advanced_lighting PROPERTIES FOLDER tests/5.advanced_lighting)
