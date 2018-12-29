@@ -1,6 +1,8 @@
 
 #include <RenderSystem/effect/Gbuffer.h>
-#include <glfw/glfw3.h>
+ 
+#include <comm/glad/glad.h>
+#include <iostream>
 
 RenderSystem::GBuffer::GBuffer(int w, int h):m_gBufferId(-1),
 m_gPosition(-1),
@@ -14,18 +16,18 @@ m_height(h)
 
 RenderSystem::GBuffer::~GBuffer()
 {
-	glDeleteBuffers(m_gBufferId);
+	glDeleteBuffers(1,&m_gBufferId);
 	
 }
 
-RenderSystem::GBuffer::Create()
+void RenderSystem::GBuffer::Create()
 {
 	glGenFramebuffers(1, &m_gBufferId);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_gBufferId);
 
 	// position
 	glGenTextures(1, &m_gPosition);
-	glBindTexture(GL_TEXTURE_2D, 0, m_gPosition);
+	glBindTexture(GL_TEXTURE_2D, m_gPosition);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	//glFramebufferTexture2D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
@@ -33,14 +35,14 @@ RenderSystem::GBuffer::Create()
 	
 	// normal
 	glGenTextures(1, &m_gNormal);
-	glBindTexture(GL_TEXTURE_2D, 0, m_gNormal);
+	glBindTexture(GL_TEXTURE_2D, m_gNormal);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, m_gNormal, 0);
 
 	// Albedospec
 	glGenTextures(1, &m_gAlbedoSpec);
-	glBindTexture(GL_TEXTURE_2D, 0, m_gAlbedoSpec);
+	glBindTexture(GL_TEXTURE_2D, m_gAlbedoSpec);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, m_gAlbedoSpec, 0);
@@ -60,5 +62,11 @@ RenderSystem::GBuffer::Create()
 		std::cout << "FrameBuffer not complete!" << std::endl;
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void RenderSystem::GBuffer::SetSize(int w, int h)
+{
+	m_width = w;
+	m_height = h;
 }
 

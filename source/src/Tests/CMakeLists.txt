@@ -19,6 +19,7 @@ LINK_LIBRARIES(glfw3.lib)
 LINK_LIBRARIES(glad)
 LINK_LIBRARIES(stb_image)
 LINK_LIBRARIES(${CMAKE_SOURCE_DIR}/thirdparty/assimp/lib/win32/assimp.lib)
+#LINK_LiBRARIES(RenderSystem)
 
 
 #2 lighting

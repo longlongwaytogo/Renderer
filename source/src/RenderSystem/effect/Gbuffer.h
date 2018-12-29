@@ -14,11 +14,11 @@ namespace RenderSystem {
 	class  GBuffer
 	{
 	public:
-		GBuffer(int w, int h);
+		GBuffer(int w = 1, int h = 1);
 		~GBuffer();
 
-		Create();
-
+		void Create();
+		void SetSize(int w, int h);
 	private:
 		unsigned int m_gBufferId;	// OpenGL FBO ID
 		unsigned int m_gPosition;	// OpenGL Texture ID for Position
