@@ -4,7 +4,7 @@
 #@date: 2018/12/28
 
 
-CreateHead( Renderer RenderSystem TestClass "${CMAKE_CURRENT_SOURCE_DIR}")
+CreateHead( Renderer RenderSystem Skybox "${CMAKE_CURRENT_SOURCE_DIR}")
 
 SET(SHADER_DIR ${CMAKE_SOURCE_DIR}/resources/shaders/tests/LearnOpenGL/Shaders/)
 
@@ -78,6 +78,8 @@ CreateTest(1.2.depth_testing 4.advanced_opengl)
 CreateTest(2.stencil_testing 4.advanced_opengl)
 CreateTest(2.1.stencil_tesing_wrap 4.advanced_opengl)
 CreateTest(5.1.framebuffers 4.advanced_opengl)
+
+CreateTest(6.1.cubemap_skybox 4.advanced_opengl)
 
 #5 advanced lighting
 #add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)

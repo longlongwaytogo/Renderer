@@ -346,7 +346,7 @@ message(${V2})
 STRING(TIMESTAMP date "%Y-%m-%dT%H:%M:%S")		
 MESSAGE(${date})
 
-CreateHead( Renderer RenderSystem TestClass "${CMAKE_CURRENT_SOURCE_DIR}")
+
 # test retrun function
 
 #https://markdewing.github.io/blog/posts/notes-on-cmake/
