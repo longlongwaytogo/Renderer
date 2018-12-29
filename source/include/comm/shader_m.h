@@ -26,9 +26,38 @@ public:
 		loadFile(vertexPath.c_str(), fragmentPath.c_str());
 	}
 
-	void loadFile(std::string& vertexPath, std::string&  fragmentPath)
+	void loadFile(const std::string& vertexPath, const std::string&  fragmentPath)
 	{
 		loadFile(vertexPath.c_str(), fragmentPath.c_str());
+	}
+
+	void loadFromSrc(const std::string& vertexSrc, const std::string& fragmentSrc)
+	{
+		const char* vShaderCode = vertexSrc.c_str();
+		const char * fShaderCode = fragmentSrc.c_str();
+		// 2. compile shaders
+		unsigned int vertex, fragment;
+		int success;
+		char infoLog[512];
+		// vertex shader
+		vertex = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(vertex, 1, &vShaderCode, NULL);
+		glCompileShader(vertex);
+		checkCompileErrors(vertex, "VERTEX", "");
+		// fragment Shader
+		fragment = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(fragment, 1, &fShaderCode, NULL);
+		glCompileShader(fragment);
+		checkCompileErrors(fragment, "FRAGMENT", "");
+		// shader Program
+		ID = glCreateProgram();
+		glAttachShader(ID, vertex);
+		glAttachShader(ID, fragment);
+		glLinkProgram(ID);
+		checkCompileErrors(ID, "PROGRAM", "prgram");
+		// delete the shaders as they're linked into our program now and no longer necessery
+		glDeleteShader(vertex);
+		glDeleteShader(fragment);
 	}
 
 	void loadFile(const char* vertexPath, const char* fragmentPath)
@@ -155,6 +184,58 @@ public:
         glUniformMatrix4fv(n, 1, GL_FALSE, &mat[0][0]);
 		//glUniform4fv(n, 4, &mat[0][0]);
     }
+
+	//////////////////////////////////////////////////////////////////////////
+	// get
+	void setBool(const std::string &name, bool& value) const
+	{
+		int ret = 0;
+		glGetUniformiv(ID, glGetUniformLocation(ID, name.c_str()), &ret);
+			value = ret == 0 ? false : true;
+	}
+	// ------------------------------------------------------------------------
+	void getInt(const std::string &name, int& value) const
+	{
+		glGetUniformiv(ID, glGetUniformLocation(ID, name.c_str()), &value);
+	}
+	// ------------------------------------------------------------------------
+	void getFloat(const std::string &name, float& value) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &value);
+	}
+	// ------------------------------------------------------------------------
+	void getVec2(const std::string &name, glm::vec2 &value) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &value[0]);
+	}
+ 
+	// ------------------------------------------------------------------------
+	void getVec3(const std::string &name, glm::vec3 &value) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &value[0]);
+	}
+	
+	// ------------------------------------------------------------------------
+	void getVec4(const std::string &name, glm::vec4 &value) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &value[0]);
+	}
+
+	// ------------------------------------------------------------------------
+	void getMat2(const std::string &name, glm::mat2 &mat) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &mat[0][0]);
+	}
+	// ------------------------------------------------------------------------
+	void getMat3(const std::string &name, glm::mat3 &mat) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &mat[0][0]);
+	}
+	// ------------------------------------------------------------------------
+	void getMat4(const std::string &name, glm::mat4 &mat) const
+	{
+		glGetUniformfv(ID, glGetUniformLocation(ID, name.c_str()), &mat[0][0]);
+	}
 
 private:
     // utility function for checking shader compilation/linking errors.
