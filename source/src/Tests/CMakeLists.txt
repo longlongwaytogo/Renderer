@@ -81,6 +81,7 @@ CreateTest(5.1.framebuffers 4.advanced_opengl)
 
 SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/6.1.model.vs" "${SHADER_DIR}/4.advanced_opengl/6.1.model.ps")
 CreateTest(6.1.cubemap_skybox 4.advanced_opengl)
+CreateTest(8.advanced_glsl_ubo 4.advanced_opengl)
 
 #5 advanced lighting
 #add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)
