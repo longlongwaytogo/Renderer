@@ -84,6 +84,9 @@ CreateTest(6.1.cubemap_skybox 4.advanced_opengl)
 CreateTest(8.advanced_glsl_ubo 4.advanced_opengl)
 SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/9.1.GeometryShader_1.gs"  "${SHADER_DIR}/4.advanced_opengl/9.1.GeometryShader_2.gs")
 CreateTest(9.1.GeometryShader 4.advanced_opengl)
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_1.gs" "${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_2.gs"
+	"${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_1.ps" "${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_2.ps")
+CreateTest(9.2.GeometryShader 4.advanced_opengl)
 CreateTest(11.1.anti_aliasing 4.advanced_opengl)
 CreateTest(11.2.anti_aliasing_offscreen 4.advanced_opengl)
 
