@@ -9,6 +9,8 @@ SET(PLAT_FROM "x86")
 SET(IS_WIN32 TRUE)
 SET(IS_WIN64 FALSE)
 
+SET(TEST_Dependcy_FILE "")
+
 #=============================================================================
 # 函数名 gen_group 
 #=============================================================================
@@ -282,7 +284,8 @@ MACRO(CreateTest testName  src_dir)
 	SET(PS_FILE ${SHADER_DIR}/${src_dir}/${testName}.ps)
 	SET(SRC_FILE  ${CMAKE_CURRENT_SOURCE_DIR}/LearnOpenGL/${src_dir}/${testName}.cpp)
 	
-	SET(FILES ${VS_FILE} ${PS_FILE} ${SRC_FILE})
+	SET(FILES ${VS_FILE} ${PS_FILE} ${SRC_FILE} ${TEST_Dependcy_FILE})
+	SET(TEST_Dependcy_FILE "")
 	
 	FOREACH(file ${FILES})
 		IF(NOT EXISTS  ${file})

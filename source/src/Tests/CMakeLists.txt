@@ -79,6 +79,7 @@ CreateTest(2.stencil_testing 4.advanced_opengl)
 CreateTest(2.1.stencil_tesing_wrap 4.advanced_opengl)
 CreateTest(5.1.framebuffers 4.advanced_opengl)
 
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/6.1.model.vs" "${SHADER_DIR}/4.advanced_opengl/6.1.model.ps")
 CreateTest(6.1.cubemap_skybox 4.advanced_opengl)
 
 #5 advanced lighting

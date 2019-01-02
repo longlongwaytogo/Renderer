@@ -77,10 +77,11 @@ namespace RenderSystem {
 			glDepthFunc(GL_LEQUAL); 
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubemapID);
-			
 			m_box.Draw();
 			glDepthFunc(GL_LESS);
 		}
+
+		unsigned int getTextureID() { return m_cubemapID; }
 public:
 	
 private:
