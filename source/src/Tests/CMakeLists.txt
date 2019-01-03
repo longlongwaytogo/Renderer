@@ -77,6 +77,7 @@ CreateTest(1.1.depth_testing 4.advanced_opengl)
 CreateTest(1.2.depth_testing 4.advanced_opengl)
 CreateTest(2.stencil_testing 4.advanced_opengl)
 CreateTest(2.1.stencil_tesing_wrap 4.advanced_opengl)
+CreateTest(3.1.blend_discard 4.advanced_opengl)
 CreateTest(5.1.framebuffers 4.advanced_opengl)
 
 SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/6.1.model.vs" "${SHADER_DIR}/4.advanced_opengl/6.1.model.ps")
@@ -84,11 +85,16 @@ CreateTest(6.1.cubemap_skybox 4.advanced_opengl)
 CreateTest(8.advanced_glsl_ubo 4.advanced_opengl)
 SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/9.1.GeometryShader_1.gs"  "${SHADER_DIR}/4.advanced_opengl/9.1.GeometryShader_2.gs")
 CreateTest(9.1.GeometryShader 4.advanced_opengl)
+
 SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_1.gs" "${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_2.gs"
 	"${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_1.ps" "${SHADER_DIR}/4.advanced_opengl/9.2.GeometryShader_2.ps")
 CreateTest(9.2.GeometryShader 4.advanced_opengl)
-CreateTest(11.1.anti_aliasing 4.advanced_opengl)
+CreateTest(10.1.Instancing_quads 4.advanced_opengl)
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/10.2.planet.vs"  "${SHADER_DIR}/4.advanced_opengl/10.2.planet.ps")
+CreateTest(10.2.Instancing_asteroids 4.advanced_opengl)
+CreateTest(11.1.anti_aliasing 4.advanced_opengl) 
 CreateTest(11.2.anti_aliasing_offscreen 4.advanced_opengl)
+
 
 #5 advanced lighting
 #add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)

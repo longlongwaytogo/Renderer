@@ -1,0 +1,14 @@
+//3.1.blend_discard.ps
+#version 330 core
+out vec4 FragColor;
+in vec2 texCoords;
+
+uniform sampler2D tex;
+
+void main()
+{
+	vec4 color = texture(tex, texCoords);	
+	if(color.a < 0.1)
+		discard;
+	FragColor =color;
+}
