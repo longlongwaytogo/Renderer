@@ -1,0 +1,12 @@
+//3.2.blend_sort.ps
+#version 330 core
+out vec4 FragColor;
+in vec2 texCoords;
+
+uniform sampler2D tex;
+
+void main()
+{
+	vec4 color = texture(tex, texCoords);	
+	FragColor =color;
+}
