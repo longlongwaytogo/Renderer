@@ -78,6 +78,7 @@ CreateTest(1.2.depth_testing 4.advanced_opengl)
 CreateTest(2.stencil_testing 4.advanced_opengl)
 CreateTest(2.1.stencil_tesing_wrap 4.advanced_opengl)
 CreateTest(3.1.blend_discard 4.advanced_opengl)
+CreateTest(3.2.blend_sort    4.advanced_opengl)
 CreateTest(5.1.framebuffers 4.advanced_opengl)
 
 SET(TEST_Dependcy_FILE "${SHADER_DIR}/4.advanced_opengl/6.1.model.vs" "${SHADER_DIR}/4.advanced_opengl/6.1.model.ps")
@@ -97,9 +98,11 @@ CreateTest(11.2.anti_aliasing_offscreen 4.advanced_opengl)
 
 
 #5 advanced lighting
-#add_executable(1.advanced_lighting LearnOpenGL/5.advanced_lighting/1.advanced_lighting/advanced_lighting.cpp)
-#SET_TARGET_PROPERTIES(1.advanced_lighting PROPERTIES FOLDER tests/5.advanced_lighting)
+CreateTest(1.Blinn_Phong 5.advanced_lighting)
+CreateTest(2.gamma_correction  5.advanced_lighting)
 
+CreateTest(4.normal_mapping 5.advanced_lighting)
+CreateTest(5.parallax_mapping 5.advanced_lighting)
 
 # test 
 ADD_EXECUTABLE(testOpenGL LearnOpenGL/TestOpenGL.cpp)

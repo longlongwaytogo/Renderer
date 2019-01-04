@@ -211,7 +211,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	// get
-	void setBool(const std::string &name, bool& value) const
+	void getBool(const std::string &name, bool& value) const
 	{
 		int ret = 0;
 		glGetUniformiv(ID, glGetUniformLocation(ID, name.c_str()), &ret);
