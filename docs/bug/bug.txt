@@ -1,0 +1,9 @@
+1. 调用glUniformMatrix4fv 失败： 原因有以下几种，我犯的错为： 没有启用Shader，导致调用失效。
+GL_INVALID_OPERATION is generated if there is no current program object.
+GL_INVALID_OPERATION is generated if the size of the uniform variable declared in the shader does not match the size indicated by the glUniform command.
+GL_INVALID_OPERATION is generated if one of the integer variants of this function is used to load a uniform variable of type float, vec2, vec3, vec4, or an array of these, or if one of the floating-point variants of this function is used to load a uniform variable of type int, ivec2, ivec3, or ivec4, or an array of these.
+GL_INVALID_OPERATION is generated if location is an invalid uniform location for the current program object and location is not equal to -1.
+GL_INVALID_OPERATION is generated if count is greater than 1 and the indicated uniform variable is not an array variable.
+GL_INVALID_OPERATION is generated if a sampler is loaded using a command other than glUniform1i and glUniform1iv.
+GL_INVALID_OPERATION is generated if glUniform is executed between the execution of glBegin and the corresponding execution of glEnd.
+For context, the object from which this function is called has a parameter called active_program that stores the number of the currently activated GLSL program. identity_matrix is declared as:
