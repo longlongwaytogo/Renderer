@@ -1,0 +1,49 @@
+//6.lighting.ps
+#version 330 core
+
+in VS_OUT
+{
+	vec3 FragPos;
+	vec3 Normal;
+	vec2 TexCoords;
+} fs_in;
+
+out vec4 FragColor;
+
+struct Light {
+	vec3 Position;
+	vec3 Color;
+};
+
+
+uniform sampler2D diffuseTex;
+uniform Light lights[16]; // 最多16个灯光
+
+
+// 光照算法
+void main()
+{
+	vec3 color = texture(diffuseTex,fs_in.TexCoords).rgb; // 获取纹理颜色
+	// 计算 abiment 
+	vec3 ambient = 0.0 * color; // 环境光作用为0
+
+	vec3 normal = normalize(fs_in.Normal);
+	//// lighting
+	vec3 lighting = vec3(0.0); // 保存多个光源叠加的结果
+	for (int i = 0; i < 16; ++i)
+	{
+		// 计算 diffuse
+		vec3 LightDir = normalize(lights[i].Position - fs_in.FragPos ); // 计算光照方向的逆方向
+		float diff = max(dot(LightDir, normal), 0.0);
+		vec3 diffuse = lights[i].Color * diff * color;
+		vec3 result = diffuse;
+		float distance = length(fs_in.FragPos - lights[i].Position);
+		// quadratic attentution
+		float attenuation = 1.0 / (distance * distance);
+		result *= attenuation;
+		 
+		lighting += result;
+	}
+
+	FragColor = vec4(ambient + lighting,1.0);
+}

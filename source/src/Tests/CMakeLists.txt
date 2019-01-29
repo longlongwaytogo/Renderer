@@ -104,6 +104,11 @@ CreateTest(2.gamma_correction  5.advanced_lighting)
 CreateTest(4.normal_mapping 5.advanced_lighting)
 CreateTest(5.parallax_mapping 5.advanced_lighting)
 
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/5.advanced_lighting/6.lighting.vs"  "${SHADER_DIR}/5.advanced_lighting/6.lighting.ps")
+CreateTest(6.hdr 5.advanced_lighting)
+CreateTest(8.deferredRendering 5.advanced_lighting)
+CreateTest(9.ssao 5.advanced_lighting)
+
 # test 
 ADD_EXECUTABLE(testOpenGL LearnOpenGL/TestOpenGL.cpp)
 SET_TARGET_PROPERTIES(testOpenGL PROPERTIES FOLDER tests)

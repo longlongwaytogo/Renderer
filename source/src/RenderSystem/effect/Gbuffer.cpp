@@ -17,6 +17,7 @@ m_height(h)
 RenderSystem::GBuffer::~GBuffer()
 {
 	glDeleteBuffers(1,&m_gBufferId);
+	glDeleteRenderbuffers(1, &m_gDepth);
 	
 }
 
@@ -30,6 +31,8 @@ void RenderSystem::GBuffer::Create()
 	glBindTexture(GL_TEXTURE_2D, m_gPosition);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	//glFramebufferTexture2D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gPosition, 0);
 	
@@ -52,10 +55,14 @@ void RenderSystem::GBuffer::Create()
 	glDrawBuffers(3, attachments);
 
 	// create and attach depth buffer 
-	glGenFramebuffers(1, &m_gDepth);
-	glBindFramebuffer(GL_FRAMEBUFFER, m_gDepth);
+	glGenRenderbuffers(1, &m_gDepth);
+	glBindRenderbuffer(GL_RENDERBUFFER, m_gDepth);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, m_width, m_height);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_COMPONENT, GL_RENDERBUFFER, m_gDepth);
+
+	// 创建包含蒙版缓冲的方法：  https://www.jianshu.com/p/e7c9cf754c53
+	//glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, m_width, m_height); 
+	//glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gDepth);
 
 	// final check if framebuffer is complete
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)

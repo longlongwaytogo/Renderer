@@ -50,21 +50,25 @@ namespace RenderSystem
 				glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, w, h);
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_depth_stencil);
 		}
-
-		void AddRBOAttachmentt(GLenum attachmentId, int w = 800, int h = 600, bool bMultiSample = false, int samples = 4)
+		// depth : GL_DEPTH_COMPONENT
+		// text  GL_RGBA 
+		void AddRBOAttachment(GLenum attachmentId, GLenum internalformat = GL_RGBA,int w = 800, int h = 600, bool bMultiSample = false, int samples = 4)
 		{
 			unsigned int rbo;
 			glGenRenderbuffers(1, &rbo);
 			glBindRenderbuffer(GL_RENDERBUFFER, rbo);
 			if(bMultiSample)
-				glRenderbufferStorageMultisample(GL_RENDERBUFFER, samples, GL_RGBA, w, h);
+				glRenderbufferStorageMultisample(GL_RENDERBUFFER, samples, internalformat, w, h);
 			else 
-				glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA, w, h);
+				glRenderbufferStorage(GL_RENDERBUFFER, internalformat, w, h);
 
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, attachmentId, GL_RENDERBUFFER, rbo);
 			m_colorAttachments[attachmentId] = rbo;
 		}
-		void AddColorAttachment(GLenum attachmentId, int w = 800, int h = 600,bool bMultiSample = false,int samples = 4)
+
+		
+		void AddColorAttachment(GLenum attachmentId, int w = 800, int h = 600,bool bMultiSample = false,int samples = 4,
+														unsigned int internalformat = GL_RGB,unsigned int format = GL_RGB)
 		{
 			// create a color attachment texture
 			unsigned int texture;
@@ -72,7 +76,7 @@ namespace RenderSystem
 			if (bMultiSample)
 			{
 				glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, texture);
-				glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, GL_RGB, w, h, GL_TRUE);
+				glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, internalformat, w, h, GL_TRUE);
 				glFramebufferTexture2D(GL_FRAMEBUFFER, attachmentId, GL_TEXTURE_2D_MULTISAMPLE, texture, 0);
 				glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 			}
@@ -80,7 +84,22 @@ namespace RenderSystem
 			{
 				glBindTexture(GL_TEXTURE_2D, texture);
 				//glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+				 
+					unsigned int dataType = GL_UNSIGNED_BYTE;
+					switch (internalformat)
+					{
+					case  GL_RGB16F:
+					case GL_RGBA16F:
+					case GL_RGB32F:
+					case GL_RGBA32F:
+						dataType = GL_FLOAT;
+						break;
+					case GL_RGB:
+					case GL_RGBA:
+						dataType = GL_UNSIGNED_BYTE;
+						break;
+					}
+				glTexImage2D(GL_TEXTURE_2D, 0, internalformat, w, h, 0, format, dataType, NULL);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 				glFramebufferTexture2D(GL_FRAMEBUFFER, attachmentId, GL_TEXTURE_2D, texture, 0);
