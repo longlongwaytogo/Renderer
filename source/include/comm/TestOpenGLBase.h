@@ -24,8 +24,8 @@ using namespace RenderSystem;
 
 namespace Tests
 {
-	const unsigned int SCR_WIDTH = 800;
-	const unsigned int SCR_HEIGHT = 600;
+	/*const*/ unsigned int SCR_WIDTH = 800;
+	/*const*/ unsigned int SCR_HEIGHT = 600;
 
 	float lastX = (float)SCR_WIDTH / 2.0;
 	float lastY = (float)SCR_HEIGHT / 2.0;
@@ -308,7 +308,7 @@ namespace Tests
 	{
 		TestBase::s_TestInstance->OnKeyboard(window, key, scancode, action, mods);
 	}
-	unsigned int loadTexture(char const * path, bool gammaCorrection)
+	static unsigned int loadTexture(char const * path, bool gammaCorrection)
 	{
 		unsigned int textureID;
 		glGenTextures(1, &textureID);
