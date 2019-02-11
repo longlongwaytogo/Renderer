@@ -9,6 +9,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <string>
 #include <comm/filesystem.h>
 #include <comm/shader_m.h>
 #include <comm/camera.h>
@@ -36,6 +37,7 @@ namespace Tests
 	float lastFrame = 0.0f;
 
 	unsigned int loadTexture(char const * path, bool gammaCorrection = false);
+	unsigned int loadTexture(std::string path, bool gammaCorrection = false);
 
 	void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -353,7 +355,14 @@ namespace Tests
 
 		return textureID;
 	}
+
+	unsigned int loadTexture(std::string path, bool gammaCorrection)
+	{
+		return loadTexture(path.c_str(), gammaCorrection);
+	}
 }
+
+
 
 Tests::TestBase*  Tests::TestBase::s_TestInstance = nullptr;
 
