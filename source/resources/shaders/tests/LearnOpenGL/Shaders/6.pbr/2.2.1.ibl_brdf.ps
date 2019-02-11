@@ -1,8 +1,8 @@
 //2.2.1.brdf.ps
 #version 330 core
-
-in vec2 TexCoords;
 out vec2 FragColor;
+in vec2 TexCoords;
+
 
 const float PI = 3.14159265359f;
 // ----------------------------------------------------------------------------
@@ -72,7 +72,7 @@ float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness)
 }
 
 
-vec2 IntergateBRDF(float NdotV, float roughness)
+vec2 IntegrateBRDF(float NdotV, float roughness)
 {
 	vec3 V;
 	V.x = sqrt(1.0 - NdotV * NdotV);
@@ -88,7 +88,7 @@ vec2 IntergateBRDF(float NdotV, float roughness)
 	for(uint i = 0u; i < SAMPLE_COUNT; ++i)
 	{
 		// generates a sample vector that's biased towards the
-		// preferred alignment direction (importance sampleing).
+		// preferred alignment direction (importance sampling).
 		vec2 Xi = Hammersley(i, SAMPLE_COUNT);
 		vec3 H = ImportanceSampleGGX(Xi, N, roughness);
 		vec3 L = normalize(2.0 * dot(V, H) * H - V);
@@ -106,14 +106,14 @@ vec2 IntergateBRDF(float NdotV, float roughness)
 			A += (1.0 - Fc) * G_Vis;
 			B += Fc * G_Vis;	
 		}
-		A /= float(SAMPLE_COUNT);
-		B /= float(SAMPLE_COUNT);
-		return vec2(A, B);
-		
 	}
+	A /= float(SAMPLE_COUNT);
+	B /= float(SAMPLE_COUNT);
+	return vec2(A, B);
+		
 }
 void main()
 {
-	vec2 integratedBRDF = IntergateBRDF(TexCoords.x, TexCoords.y);
+	vec2 integratedBRDF = IntegrateBRDF(TexCoords.x, TexCoords.y);
 	FragColor = integratedBRDF;
 }

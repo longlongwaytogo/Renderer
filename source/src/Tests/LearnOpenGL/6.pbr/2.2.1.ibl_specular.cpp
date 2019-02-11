@@ -150,7 +150,7 @@ public:
 		//m_box.Draw();
 
 		// render brdfLUT quad
-		m_hdrCubeMap.DrawBrdfLUTQuad();
+		// m_hdrCubeMap.DrawBrdfLUTQuad();
 
 	}
 private:
