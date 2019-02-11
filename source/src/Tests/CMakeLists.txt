@@ -132,6 +132,9 @@ SET(TEST_Dependcy_FILE "${SHADER_DIR}/6.pbr/2.2.1.background.vs" "${SHADER_DIR}/
 CreateTest(2.2.1.ibl_specular 6.pbr)
 
 CreateTest(2.2.2.ibl_specular_textured 6.pbr)
+
+# debugger
+CreateTest(debugApp   7.practice)
 # test 
 ADD_EXECUTABLE(testOpenGL LearnOpenGL/TestOpenGL.cpp)
 SET_TARGET_PROPERTIES(testOpenGL PROPERTIES FOLDER tests)

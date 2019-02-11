@@ -1,3 +1,6 @@
 [基于物理的渲染（PBR）白皮书](https://blog.csdn.net/poem_qianmo/article/details/85239398)
 [cmftStudio](https://github.com/dariomanesku/cmftStudio)
 [IBLBaker](https://github.com/derkreature/IBLBaker)
+[Rendering-the-World-of-Far](https://www.gdcvault.com/play/1022235/Rendering-the-World-of-Far)
+[GPU编程与CG语言之阳春白雪下里巴人](值得一读的图形书籍：作者康玉之)
+[Real Shading in Unreal Engine 4](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
