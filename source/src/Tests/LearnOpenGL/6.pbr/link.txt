@@ -4,3 +4,5 @@
 [Rendering-the-World-of-Far](https://www.gdcvault.com/play/1022235/Rendering-the-World-of-Far)
 [GPU编程与CG语言之阳春白雪下里巴人](值得一读的图形书籍：作者康玉之)
 [Real Shading in Unreal Engine 4](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
+
+[猴子都能看懂的PBR（才怪）](https://blog.csdn.net/qq_34552886/article/details/84066638)

@@ -1,0 +1,8 @@
+[游戏引擎中的光照算法](https://www.cnblogs.com/ghl_carmack/p/10259270.html)
+ 体素全局光照
+[voxel-based-global-illumination](http://on-demand.gputechconf.com/gtc/2014/presentations/S4552-rt-voxel-based-global-illumination-gpus.pdf)
+[OpenCL Voxel Splatting Demo](http://www.geeks3d.com/20120905/opencl-voxel-splatting-demo/)
+[Voxel Cone Tracing Global Illumination in OpenGL 4.3](http://www.geeks3d.com/20121214/voxel-cone-tracing-global-illumination-in-opengl-4-3/)
+[Voxel Based Deferred Lighting(1)](https://zhuanlan.zhihu.com/p/52815763)
+[Rendering the World of Far Cry 4](https://www.gdcvault.com/play/1022235/Rendering-the-World-of-Far)
+[Implementation Notes: Runtime Environment Map Filtering for Image Based Lighting](https://placeholderart.wordpress.com/2015/07/28/implementation-notes-runtime-environment-map-filtering-for-image-based-lighting/)
