@@ -1,0 +1,9 @@
+//8.deferredRendering.ps 用于绘制灯光的boxshader
+#version 330 core
+out vec4 FragColor;
+
+uniform vec3 lightColor;
+void main()
+{
+	FragColor = vec4(lightColor, 1.0f);
+}

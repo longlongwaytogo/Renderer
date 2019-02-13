@@ -7,6 +7,7 @@
 CreateHead( Renderer RenderSystem Skybox "${CMAKE_CURRENT_SOURCE_DIR}")
 
 SET(SHADER_DIR ${CMAKE_SOURCE_DIR}/resources/shaders/tests/LearnOpenGL/Shaders/)
+SET(COMM_SHADER_DIR ${CMAKE_SOURCE_DIR}/resources/shaders/pipeline/)
 
 
 
@@ -97,22 +98,26 @@ LINK_LIBRARIES(${CMAKE_SOURCE_DIR}/thirdparty/assimp/lib/win32/assimp.lib)
 #CreateTest(11.2.anti_aliasing_offscreen 4.advanced_opengl)
 #
 #
-##5 advanced lighting
-#CreateTest(1.Blinn_Phong 5.advanced_lighting)
-#CreateTest(2.gamma_correction  5.advanced_lighting)
-#
-#CreateTest(4.normal_mapping 5.advanced_lighting)
-#CreateTest(5.parallax_mapping 5.advanced_lighting)
-#
-#SET(TEST_Dependcy_FILE "${SHADER_DIR}/5.advanced_lighting/6.lighting.vs"  "${SHADER_DIR}/5.advanced_lighting/6.lighting.ps")
-#CreateTest(6.hdr 5.advanced_lighting)
-#
-#SET(TEST_Dependcy_FILE "${SHADER_DIR}/5.advanced_lighting/7.blur.vs"  "${SHADER_DIR}/5.advanced_lighting/7.blur.ps"
-#	"${SHADER_DIR}/5.advanced_lighting/7.light.ps" "${SHADER_DIR}/5.advanced_lighting/7.bloomFinal.vs"
-#	"${SHADER_DIR}/5.advanced_lighting/7.bloomFinal.ps" )
-#CreateTest(7.bloom 5.advanced_lighting)
-#CreateTest(8.deferredRendering 5.advanced_lighting)
-#CreateTest(9.ssao 5.advanced_lighting)
+#5 advanced lighting
+CreateTest(1.Blinn_Phong 5.advanced_lighting)
+CreateTest(2.gamma_correction  5.advanced_lighting)
+
+CreateTest(4.normal_mapping 5.advanced_lighting)
+CreateTest(5.parallax_mapping 5.advanced_lighting)
+
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/5.advanced_lighting/6.lighting.vs"  "${SHADER_DIR}/5.advanced_lighting/6.lighting.ps")
+CreateTest(6.hdr 5.advanced_lighting)
+
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/5.advanced_lighting/7.blur.vs"  "${SHADER_DIR}/5.advanced_lighting/7.blur.ps"
+	"${SHADER_DIR}/5.advanced_lighting/7.light.ps" "${SHADER_DIR}/5.advanced_lighting/7.bloomFinal.vs"
+	"${SHADER_DIR}/5.advanced_lighting/7.bloomFinal.ps" )
+CreateTest(7.bloom 5.advanced_lighting)
+
+SET(TEST_Dependcy_FILE "${COMM_SHADER_DIR}/GBuffer_DeferredLight.vs" "${COMM_SHADER_DIR}/GBuffer_DeferredLight.ps"
+	"${COMM_SHADER_DIR}/GBuffer_Geometry.vs" "${COMM_SHADER_DIR}/GBuffer_Geometry.ps")
+CreateTest(8.deferredRendering 5.advanced_lighting)
+#TARGET_LINK_LIBRARIES(8.deferredRendering RenderSystem)
+CreateTest(9.ssao 5.advanced_lighting)
 
 
 # chapter 6

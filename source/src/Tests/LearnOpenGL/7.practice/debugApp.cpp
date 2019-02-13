@@ -106,7 +106,7 @@ public:
 	}
 private:
 	Shader m_debuggerShader;
-	Box m_box;
+	Box m_box;  // todo box的正反面错误，需要进行修正
 	unsigned int m_tex;
 	
 };
