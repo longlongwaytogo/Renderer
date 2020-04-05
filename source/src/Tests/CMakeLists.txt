@@ -102,6 +102,10 @@ LINK_LIBRARIES(${CMAKE_SOURCE_DIR}/thirdparty/assimp/lib/win32/assimp.lib)
 CreateTest(1.Blinn_Phong 5.advanced_lighting)
 CreateTest(2.gamma_correction  5.advanced_lighting)
 
+SET(TEST_Dependcy_FILE "${SHADER_DIR}/5.advanced_lighting/3.1.1.debug.vs"  "${SHADER_DIR}/5.advanced_lighting/3.1.1.debug.ps"
+	"${SHADER_DIR}/5.advanced_lighting/3.1.1.shadow_mapping.vs"  "${SHADER_DIR}/5.advanced_lighting/3.1.1.shadow_mapping.ps" )
+CreateTest(3.1.1.shadow_mapping_depth 5.advanced_lighting)
+
 CreateTest(4.normal_mapping 5.advanced_lighting)
 CreateTest(5.parallax_mapping 5.advanced_lighting)
 

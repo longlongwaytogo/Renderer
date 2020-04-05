@@ -66,6 +66,13 @@ namespace RenderSystem
 			m_colorAttachments[attachmentId] = rbo;
 		}
 
+		/*	 外部创建texture并设置属性
+		*/
+		void SetColorAttachment(GLenum attachmentId, int texture)
+		{
+			glFramebufferTexture2D(GL_FRAMEBUFFER, attachmentId, GL_TEXTURE_2D, texture, 0);
+			m_colorAttachments[attachmentId] = texture;
+		}
 		
 		void AddColorAttachment(GLenum attachmentId, int w = 800, int h = 600,bool bMultiSample = false,int samples = 4,
 														unsigned int internalformat = GL_RGB,unsigned int format = GL_RGB)
@@ -119,6 +126,7 @@ namespace RenderSystem
 			if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 			{
 				std::cout << "gl fbo not complete!" << std::endl;
+				int code = glGetError();
 				return false;
 			}
 			return true;

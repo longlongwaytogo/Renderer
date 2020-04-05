@@ -1,0 +1,11 @@
+//3.1.1.shadow_mapping_depth.ps
+#version 330 core
+out vec4 FragColor;
+uniform sampler2D diffuseMap;
+in vec2 texCoord;
+void main()
+{
+	//gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+	FragColor = vec4(0.0, 1.0, 0.0, 1.0);// texture(diffuseMap, texCoord);
+	//return vec4(1.0, 0.0, 0.0, 1.0);
+}
